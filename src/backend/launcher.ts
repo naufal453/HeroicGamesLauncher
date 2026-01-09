@@ -929,8 +929,8 @@ async function prepareWineLaunch(
         )
       }
       extendedEnv['HEROIC_GOGDL_WRAPPER_EXE'] = join(
-        galaxyOverlay,
-        'galaxy.exe'
+        galaxyCommPath,
+        'overlay-heroic/galaxy.exe'
       )
     }
   } catch (err) {
