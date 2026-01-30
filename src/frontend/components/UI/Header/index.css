@@ -11,6 +11,11 @@
   color: var(--text-secondary);
 }
 
+/* Add offset when custom header is shown */
+.frameless .Header {
+  top: 40px;
+}
+
 .frameless:not(.fullscreen) .Header {
   padding-right: calc(
     var(--overlay-controls-width) - env(titlebar-area-x, 0px) + 10px

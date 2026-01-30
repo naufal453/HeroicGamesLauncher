@@ -36,6 +36,12 @@ body {
   top: 0px;
 }
 
+/* Add padding when custom header is shown */
+.App.frameless .Sidebar {
+  padding-top: 40px;
+  max-height: calc(100vh - 40px);
+}
+
 .App .content {
   container: main-content / inline-size;
   display: flex;
@@ -45,6 +51,11 @@ body {
   &:not(:has(.gameConfigContainer img.backgroundImage)) {
     background: var(--gradient-body-background, var(--body-background));
   }
+}
+
+/* Add padding when custom header is shown */
+.App.frameless .content {
+  padding-top: 40px;
 }
 
 .App .controller {

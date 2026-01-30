@@ -40,15 +40,24 @@ export const createMainWindow = () => {
       windowProps.width = screenInfo.workAreaSize.width * 0.8
     }
   }
-  // Set up frameless window if enabled in settings
-  const settings = configStore.get('settings', <AppSettings>{})
-  if (settings?.framelessWindow) {
-    // use native overlay controls where supported
-    if (['darwin', 'win32'].includes(process.platform)) {
-      windowProps.titleBarStyle = 'hidden'
-      windowProps.titleBarOverlay = true
-    } else {
-      windowProps.frame = false
+
+  // On Linux, use frameless window for custom header
+  if (process.platform === 'linux') {
+    windowProps.frame = false
+  } else {
+    // Set up frameless window if enabled in settings for other platforms
+    const settings = configStore.get('settings', <AppSettings>{})
+    if (settings?.framelessWindow) {
+      // use native overlay controls where supported
+      if (process.platform === 'darwin') {
+        windowProps.titleBarStyle = 'hidden'
+        windowProps.titleBarOverlay = true
+      } else if (process.platform === 'win32') {
+        windowProps.titleBarStyle = 'hidden'
+        windowProps.titleBarOverlay = true
+      } else {
+        windowProps.frame = false
+      }
     }
   }
 

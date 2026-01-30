@@ -49,6 +49,11 @@
   z-index: 9;
 }
 
+/* Adjust for custom window header */
+.frameless .libraryHeader {
+  top: calc(var(--header-height, 82px) + 40px);
+}
+
 .libraryHeaderWrapper {
   display: grid;
   align-items: center;

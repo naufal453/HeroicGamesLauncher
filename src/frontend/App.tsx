@@ -33,7 +33,7 @@ function Root() {
   } = useContext(ContextProvider)
 
   const hasNativeOverlayControls = navigator['windowControlsOverlay']?.visible
-  const showOverlayControls = isFrameless && !hasNativeOverlayControls
+  const showOverlayControls = isFrameless || !hasNativeOverlayControls
 
   const theme = createTheme({
     direction: isRTL ? 'rtl' : 'ltr',

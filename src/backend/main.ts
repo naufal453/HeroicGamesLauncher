@@ -155,8 +155,22 @@ import {
 import { supportedLanguages } from 'common/languages'
 import MigrationSystem from './migration'
 
-app.commandLine?.appendSwitch('ozone-platform-hint', 'auto')
-if (isLinux) app.commandLine?.appendSwitch('--gtk-version', '3')
+if (isLinux) {
+  // Force GTK 4 with native decorations
+  app.commandLine?.appendSwitch('--gtk-version', '4')
+  app.commandLine?.appendSwitch(
+    '--enable-features',
+    'UseOzonePlatform,WaylandWindowDecorations'
+  )
+  app.commandLine?.appendSwitch('--ozone-platform', 'wayland')
+
+  // GTK 4 / Adwaita environment
+  process.env.GTK_THEME = process.env.GTK_THEME || 'Adwaita'
+  process.env.GTK_USE_PORTAL = '1'
+  process.env.GTK_CSD = '1'
+} else {
+  app.commandLine?.appendSwitch('ozone-platform-hint', 'auto')
+}
 
 const { showOpenDialog } = dialog
 
